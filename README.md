@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Enzama Looks
 
-## Getting Started
+Salon booking for Enzama Looks in Entebbe. Guests book without an account. Admin and professionals sign in with email and password.
 
-First, run the development server:
+## Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Next.js 16, Prisma 7, MySQL, Auth.js (credentials), Tailwind 4.
+
+## Setup
+
+1. Copy database values into `.env` (already used locally):
+
+```
+DATABASE_URL="mysql://salon:Salon%4012345@localhost:3306/salonBooking"
+AUTH_SECRET="your-secret"
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install, migrate, seed, run:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+npx prisma migrate deploy
+npx prisma generate
+npx prisma db seed
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Seeded logins
 
-## Learn More
+| Role | Email | Password |
+| --- | --- | --- |
+| Admin | admin@enzamalooks.com | EnzamaAdmin123 |
+| Professional | amina@enzamalooks.com | EnzamaStaff123 |
 
-To learn more about Next.js, take a look at the following resources:
+Other professionals: `david@`, `grace@`, `sarah@`, `patricia@`, `joan@enzamalooks.com` — same staff password.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Routes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `/` marketing
+- `/book` guest booking
+- `/login` staff
+- `/admin` management
+- `/staff` professional portal
